@@ -31,4 +31,19 @@ async def get_item(id=None):
     return return_json
 
 
+# Treat id as integer
+@app.get("/itemDetails")
+async def get_item(id: int = None):
+    list_to_debug = [item["item_id"] for item in items]
+    print(list_to_debug)
+    return_json = {"id": "", "name": ""}
+    for item in items:
+        if item["item_id"] == id:
+            return_json = item
+            break
+        else:
+            return_json = {"id": "not found", "name": "not found"}
+    return return_json
+
+
 
